@@ -6,4 +6,5 @@ import springboot.chapter1.POJO.PurchaseRecordPo;
 @Mapper
 public interface PurchaseRecordDao {
     public int insertPurchaseRecord(PurchaseRecordPo pr);
+    public int addPurchaseRecord(PurchaseRecordPo pr);
 }
