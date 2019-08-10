@@ -5,10 +5,8 @@ import org.apache.tomcat.jni.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import springboot.chapter1.service.PurchaseService;
@@ -24,7 +22,7 @@ public class Chapter1ApplicationTests {
 
     @Test
     public void contextLoads() {
-        User user = purchaseService.getClass();
+        Class<? extends PurchaseService> user = purchaseService.getClass();
         //判断用户信息是否为空
         Assert.assertNotNull(user);
     }
@@ -38,17 +36,17 @@ public class Chapter1ApplicationTests {
         Assert.assertNotNull(user);
     }
 
-    @MockBean
-    private PurchaseService purchaseService = null;
-    @Test
-    public void testGetProduct() {
-        //构建虚拟对象
-        Product mockProduct = new Product();
-        mockProduct.setId(1L);
-        mockProduct.setProductName("product_name_" + 1);
-        mockProduct.setNote("note_" +1);
-        //指定 Mock Bean 方法和参数
-        BDDMockito.given(this.productService.getProduct(1L));
-        Assert.assertTrue(Product.getId() == 1L);
-    }
+ //   @MockBean
+//    private PurchaseService purchaseService = null;
+//    @Test
+//    public void testGetProduct() {
+//        //构建虚拟对象
+//        Product mockProduct = new Product();
+//        mockProduct.setId(1L);
+//        mockProduct.setProductName("product_name_" + 1);
+//        mockProduct.setNote("note_" +1);
+//        //指定 Mock Bean 方法和参数
+//        BDDMockito.given(this.productService.getProduct(1L));
+//        Assert.assertTrue(Product.getId() == 1L);
+//    }
 }
